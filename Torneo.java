@@ -1,9 +1,6 @@
 package Trabajo_Semanal_Jaime;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Torneo {
     String nombre_torneo,tipo_juego;
@@ -22,13 +19,40 @@ public class Torneo {
         mapa_puntuaciones.put(j.nickname,0);
     }
 
-    protected void registrar_Puntuacion(int puntaje,Jugador j){
+    protected void registrar_Puntuacion(Jugador j){
+        Random random = new Random();
        for(Jugador jugador :lista_Jugadores){
            if (Objects.equals(jugador.nickname, j.nickname)){
-               mapa_puntuaciones.replace(j.nickname,puntaje);
+               mapa_puntuaciones.put(j.nickname,random.nextInt(100)+1);
            }
        }
     }
     protected void obtener_Ganador(){
+        List<String> listajugadores = new ArrayList<>();
+        List<Integer> listapuntajes = new ArrayList<>();
+        String nickname = "";
+
+        for (int i = 0 ; i < mapa_puntuaciones.size();i++) {
+            int pganador = 0;
+            for (String j : mapa_puntuaciones.keySet()) {
+                if (mapa_puntuaciones.get(j) > pganador) {
+                    pganador = mapa_puntuaciones.get(j);
+                    nickname = j;
+                }
+            }
+            listapuntajes.add(pganador);
+            listajugadores.add(nickname);
+            mapa_puntuaciones.put(nickname,0);
+        }
+        asignarrangkings(listajugadores);
+        for(int i = 0;i<mapa_puntuaciones.size();i++){
+            System.out.println("#"+(i+1)+"\nNick : "+listajugadores.get(i)+"\nPuntaje : "+listapuntajes.get(i));
+        }
     }
+    void asignarrangkings(List<String> jugadores) {
+        for (Jugador j : lista_Jugadores) {
+            j.ranking=jugadores.indexOf(j.nickname)+1;
+        }
+    }
+
 }

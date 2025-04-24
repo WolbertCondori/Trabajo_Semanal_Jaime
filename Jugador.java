@@ -1,12 +1,15 @@
 package Trabajo_Semanal_Jaime;
 
-public class Jugador extends Participante implements Competidor{
-    String pais,ranking;
 
-    public Jugador(String nombre, String nickname, Integer id_participante, Integer edad, String pais, String ranking) {
+import java.util.Random;
+
+public class Jugador extends Participante implements Competidor{
+    String pais;
+    int ranking;
+
+    public Jugador(String nombre, String nickname, Integer id_participante, Integer edad, String pais) {
         super(nombre, nickname, id_participante, edad);
         this.pais = pais;
-        this.ranking = ranking;
     }
 
     @Override
@@ -21,11 +24,11 @@ public class Jugador extends Participante implements Competidor{
 
     @Override
     public void jugar_Partida() {
-        Competidor.super.jugar_Partida();
+        System.out.println("jugando. . .");
     }
 
     @Override
     public void recibir_premio() {
-        Competidor.super.recibir_premio();
+        System.out.println("grax");
     }
 }
