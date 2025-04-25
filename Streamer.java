@@ -5,8 +5,8 @@ public class Streamer extends Participante{
     Integer numero_seguidores;
     String plataforma;
 
-    public Streamer(String nombre, String nickname, Integer id_participante, Integer edad, Integer numero_seguidores, String plataforma) {
-        super(nombre, nickname, id_participante, edad);
+    public Streamer(String nombre, String nickname , Integer edad, Integer numero_seguidores, String plataforma) {
+        super(nombre, nickname, edad);
         this.numero_seguidores = numero_seguidores;
         this.plataforma = plataforma;
     }

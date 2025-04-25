@@ -14,12 +14,11 @@ public class Torneo {
         this.ID_torneo = ID_torneo;
     }
 
-    protected void inscribir_Jugador(Jugador j){
+     void inscribir_Jugador(Jugador j){
         lista_Jugadores.add(j);
         mapa_puntuaciones.put(j.nickname,0);
     }
-
-    protected void registrar_Puntuacion(Jugador j){
+     void registrar_Puntuacion(Jugador j){
         Random random = new Random();
        for(Jugador jugador :lista_Jugadores){
            if (Objects.equals(jugador.nickname, j.nickname)){
@@ -27,12 +26,12 @@ public class Torneo {
            }
        }
     }
-    protected void obtener_Ganador(){
+     void obtener_Ganador(){
         List<String> listajugadores = new ArrayList<>();
         List<Integer> listapuntajes = new ArrayList<>();
-        String nickname = "";
 
         for (int i = 0 ; i < mapa_puntuaciones.size();i++) {
+            String nickname = "";
             int pganador = 0;
             for (String j : mapa_puntuaciones.keySet()) {
                 if (mapa_puntuaciones.get(j) > pganador) {
