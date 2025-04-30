@@ -13,17 +13,15 @@ public class Torneo {
         this.tipo_juego = tipo_juego;
         this.ID_torneo = ID_torneo;
     }
-
      void inscribir_Jugador(Jugador j){
         lista_Jugadores.add(j);
         mapa_puntuaciones.put(j.nickname,0);
     }
-     void registrar_Puntuacion(Jugador j){
+     void registrar_Puntuacion(){
         Random random = new Random();
        for(Jugador jugador :lista_Jugadores){
-           if (Objects.equals(jugador.nickname, j.nickname)){
-               mapa_puntuaciones.put(j.nickname,random.nextInt(100)+1);
-           }
+           jugador.jugar_Partida();
+           mapa_puntuaciones.put(jugador.nickname,random.nextInt(100)+1);
        }
     }
      void obtener_Ganador(){
@@ -53,5 +51,4 @@ public class Torneo {
             j.ranking=jugadores.indexOf(j.nickname)+1;
         }
     }
-
 }

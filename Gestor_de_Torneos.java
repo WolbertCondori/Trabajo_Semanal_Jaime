@@ -1,5 +1,10 @@
 package Trabajo_Semanal_Jaime;
 
+import org.json.JSONObject;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -42,18 +47,34 @@ public class Gestor_de_Torneos {
         }
     }
     void registrarResultado(){
-
+        for (Torneo torneo : torneos) {
+            torneo.registrar_Puntuacion();
+            torneo.obtener_Ganador();
+        }
     }
     void mostrarInforme(){
-        for (Torneo t:torneos){
-            System.out.println("Nombre del Torneo : "+t.nombre_torneo
-            +"\nTipo de Torneo : "+t.tipo_juego
-            +"\nID Torneo : "+t.ID_torneo
-            +"\n===================JUGADORES=====================");
 
-            for(Jugador j:t.lista_Jugadores){
-                j.mostrar_perfil();
+    }
+    void crearjeson(Torneo t){
+
+    }
+    void escreberJeson(Torneo t){
+        try {
+            FileWriter escritor = new FileWriter(t.nombre_torneo+"_Informe.json");
+            BufferedWriter buffer = new BufferedWriter(escritor);
+            JSONObject objetojson = new JSONObject();
+            int id_json=0;
+            for (Jugador j : t.lista_Jugadores) {
+                String creadorDeString;
+                creadorDeString = "Nombre : "+j.nickname+" Ranking : "+j.ranking;
+                buffer.write(creadorDeString);
+                buffer.newLine();
             }
+            buffer.close();
+            System.out.println("Texto escrito");
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo");
+            e.printStackTrace();
         }
     }
 }
